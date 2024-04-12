@@ -2,7 +2,7 @@ import { TiShoppingCart } from "react-icons/ti";
 
 export default function Navbar() {
   return (
-    <nav className="fixed w-full">
+    <nav className="fixed w-full z-50">
       <div className="flex items-center h-12 bg-[#0F52BA] px-6">
         <h1 className="flex items-center flex-1 text-white gap-2">
           <span className="text-[32px] font-semibold">MKS</span>{" "}

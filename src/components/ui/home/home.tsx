@@ -62,8 +62,8 @@ export default function Products() {
   }, []);
 
   return (
-    <div>
-      <div className="grid grid-cols-4 items-center justify-items-center h-screen p-40 gap-20">
+    <div className="relative h-full">
+      <div className="flex flex-col justify-center lg:grid lg:grid-cols-2 xl:grid-cols-4 items-center justify-items-center p-20 gap-10 xl:gap-20">
         {products.map((product) => (
           <div
             key={product.id}
@@ -82,33 +82,20 @@ export default function Products() {
               <div className="px-4 py-2">
                 <div className="flex items-center justify-between mb-2">
                   <h2 className="">{product.name}</h2>
-                  <p className="bg-black text-white text-[15px] rouned-md font-bold p-2 rounded-md">
+                  <p className="flex items-center justify-center bg-black text-white text-[15px] rouned-md font-bold w-32 p-2 rounded-md">
                     R$ {product.price}
                   </p>
                 </div>
                 <p className="text-[10px]">{product.description}</p>
               </div>
-              <div className="flex items-center justify-center bg-[#0F52BA] text-white h-10 font-semibold rounded-b-lg gap-3 cursor-pointer"
-              onClick={() => handleClick(product)}>
+              <div
+                className="flex items-center justify-center bg-[#0F52BA] text-white h-10 font-semibold rounded-b-lg gap-3 cursor-pointer"
+                onClick={() => handleClick(product)}
+              >
                 <FiShoppingBag />
                 <span>Comprar</span>
               </div>
             </div>
-            {/* <div className="flex flex-col gap-5">
-              <div className="px-4 py-2">
-                <div className="flex items-center justify-between">
-                  <h2>{product.name}</h2>
-                  <p className="text-[15px] bg-black text-white px-2 py-2 rounded-md font-bold">
-                    R$ {product.price}
-                  </p>
-                </div>
-                <p className="text-[10px]">{product.description}</p>
-              </div>
-              <div className="bg-[#0F52BA] flex items-center justify-center text-white h-10 font-semibold absolute left-0 bottom-0 w-full rounded-b-lg gap-3">
-                <FiShoppingBag />
-                <button onClick={() => handleClick(product)}>Comprar</button>
-              </div>
-            </div> */}
           </div>
         ))}
       </div>
@@ -118,6 +105,9 @@ export default function Products() {
         fecharCarrinho={fecharCarrinho}
         setShoppingCart={setShoppingCart}
       />
+      <div className="absolute bottom-0 xl:-bottom-3 w-full flex items-center justify-center h-8 bg-zinc-100">
+        <p className="text-xs">MKS Sistemas © Todos os direitos reservados</p>
+      </div>
     </div>
   );
 }
