@@ -13,13 +13,11 @@ export default function Products() {
   const [mostrarCarrinho, setMostrarCarrinho] = useState(false);
 
   const handleClick = (produtoCarrinho) => {
-    // Procura o produto no carrinho
     const existingProduct = shoppingCart.find(
       (item) => item.id === produtoCarrinho.id
     );
 
     if (existingProduct) {
-      // Se encontrou, aumenta a quantidade
       setShoppingCart(
         shoppingCart.map((item) =>
           item.id === produtoCarrinho.id
@@ -28,7 +26,6 @@ export default function Products() {
         )
       );
     } else {
-      // Se não encontrou, adiciona o produto com quantidade 1
       setShoppingCart([...shoppingCart, { ...produtoCarrinho, quantity: 1 }]);
     }
     setMostrarCarrinho(true);
