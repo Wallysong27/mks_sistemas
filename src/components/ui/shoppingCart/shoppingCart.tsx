@@ -4,13 +4,21 @@ import {
   ShoppingCartContainer,
   StyledLi,
 } from "@/components/layout/ShoppingCartStyles";
+import { Product } from "@/model/Product";
+
+interface ShoppingCartProps {
+  carrinho: Product[]; // Defina o tipo explicitamente
+  mostrarCarrinho: boolean;
+  fecharCarrinho: () => void;
+  setShoppingCart: (cart: Product[]) => void;
+}
 
 export default function ShoppingCart({
   carrinho,
   mostrarCarrinho,
   fecharCarrinho,
   setShoppingCart,
-}) {
+}: ShoppingCartProps) {
   const [total, setTotal] = useState(0);
   const [compraEfetuada, setCompraEfetuada] = useState(false);
 
@@ -32,14 +40,14 @@ export default function ShoppingCart({
     }
   }, [compraEfetuada, setShoppingCart]);
 
-  const aumentarQuantidade = (id) => {
+  const aumentarQuantidade = (id: number) => {
     const novoCarrinho = carrinho.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
     setShoppingCart(novoCarrinho);
   };
 
-  const diminuirQuantidade = (id) => {
+  const diminuirQuantidade = (id: number) => {
     const novoCarrinho = carrinho
       .map((item) =>
         item.id === id ? { ...item, quantity: item.quantity - 1 } : item
@@ -48,7 +56,7 @@ export default function ShoppingCart({
     setShoppingCart(novoCarrinho);
   };
 
-  const removerItem = (id) => {
+  const removerItem = (id: number) => {
     const novoCarrinho = carrinho.filter((item) => item.id !== id);
     setShoppingCart(novoCarrinho);
   };
@@ -143,7 +151,7 @@ export default function ShoppingCart({
         }
         /* Adicione mais estilos conforme necessário */
       `}</style>
-      {!compraEfetuada && (
+      {!compraEfetuada && carrinho.length > 0 && (
         <div className="!bg-[#0F52BA]">
           <div className="lg:absolute lg:bottom-32 w-full flex items-center justify-around mt-10 mb-6">
             <p className="text-white font-bold text-2xl">Total:</p>
