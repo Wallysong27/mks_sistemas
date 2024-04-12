@@ -1,5 +1,9 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import {
+  ShoppingCartContainer,
+  StyledLi,
+} from "@/components/layout/ShoppingCartStyles";
 
 export default function ShoppingCart({
   carrinho,
@@ -59,7 +63,7 @@ export default function ShoppingCart({
   };
 
   return (
-    <div
+    <ShoppingCartContainer
       className={`carrinho ${
         mostrarCarrinho ? "mostrar" : ""
       } lg:!w-[450px] !bg-[#0F52BA] z-50 overflow-y-auto`}
@@ -87,16 +91,20 @@ export default function ShoppingCart({
                 className="absolute top-2 right-2 lg:-top-1 lg:-right-1 flex items-center justify-center lg:bg-black rounded-full w-5 h-5 cursor-pointer"
                 onClick={() => removerItem(produto.id)}
               >
-                <span className="lg:text-white font-medium lg:font-normal text-4xl lg:text-base">x</span>
+                <span className="lg:text-white font-medium lg:font-normal text-4xl lg:text-base">
+                  x
+                </span>
               </div>
               <div className="flex flex-col lg:flex-row items-center justify-evenly h-full w-full">
-                  <Image
-                    src={produto.photo}
-                    width={100}
-                    height={100}
-                    alt={produto.name}
-                  />
-                <div className="w-full text-sm lg:w-20 text-center">{produto.name}</div>
+                <Image
+                  src={produto.photo}
+                  width={100}
+                  height={100}
+                  alt={produto.name}
+                />
+                <div className="w-full text-sm lg:w-20 text-center">
+                  {produto.name}
+                </div>
                 <div className="flex flex-row items-center justify-center gap-4 w-full">
                   <div className="flex flex-col">
                     <span className="text-[5px] hidden lg:block">Qtd:</span>
@@ -116,7 +124,9 @@ export default function ShoppingCart({
                       </div>
                     </div>
                   </div>
-                  <div className="bg-black text-white font-bold p-2 rounded-md">{produto.price}</div>
+                  <div className="bg-black text-white font-bold p-2 rounded-md">
+                    {produto.price}
+                  </div>
                 </div>
               </div>
             </li>
@@ -128,23 +138,6 @@ export default function ShoppingCart({
         </p>
       )}
       <style jsx>{`
-        .carrinho {
-          position: fixed;
-          right: 0;
-          top: 0;
-          width: 300px;
-          height: 100%;
-          background-color: white;
-          box-shadow: -2px 0 4px rgba(0, 0, 0, 0.2);
-          transform: translateX(100%);
-          transition: transform 0.3s ease-in-out;
-        }
-        .carrinho.mostrar {
-          transform: translateX(0);
-        }
-        li {
-          margin: 10px 0;
-        }
         button {
           margin: 0 5px;
         }
@@ -173,6 +166,6 @@ export default function ShoppingCart({
           </p>
         </div>
       )}
-    </div>
+    </ShoppingCartContainer>
   );
 }
